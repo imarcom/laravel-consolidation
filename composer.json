@@ -1,0 +1,25 @@
+{
+  "name": "imarcom/laravel-consolidation",
+  "description": "Consolidate files between core codebase and customer codebase",
+  "homepage": "https://bitbucket.org/imarcom/laravel-consolidation",
+  "license": "MIT",
+  "require": {
+    "php" : ">=7.0",
+    "illuminate/support": "5.5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Imarcom\\Consolidation\\": "src"
+    },
+    "files": [
+      "src/helpers.php"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Imarcom\\Consolidation\\ConsolidationServiceProvider"
+      ]
+    }
+  }
+}
