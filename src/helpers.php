@@ -24,12 +24,12 @@ if (! function_exists('make_file')) {
     }
 }
 
-if (! function_exists('sha1_file_fixed')) {
+if (! function_exists('compatible_sha1_file')) {
     /**
      * Fix sha1_file hashing between Windows and Unix systems
      * Windows EOL = "\r\n", Unix EOL = "\n"
      */
-    function sha1_file_fixed($basePath)
+    function compatible_sha1_file($basePath)
     {
         return sha1(preg_replace("#\r\n#", "\n", file_get_contents($basePath)));
     }

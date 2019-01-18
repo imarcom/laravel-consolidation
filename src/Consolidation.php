@@ -39,6 +39,6 @@ class Consolidation
 
     private function generateHash($originalRelativePath, $overrideRelativePath)
     {
-        return sha1_file_fixed(base_path($originalRelativePath)) . '+' . sha1_file_fixed(base_path($overrideRelativePath));
+        return compatible_sha1_file(base_path($originalRelativePath)) . '+' . compatible_sha1_file(base_path($overrideRelativePath));
     }
 }
