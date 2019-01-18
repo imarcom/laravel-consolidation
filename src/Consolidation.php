@@ -2,10 +2,8 @@
 
 namespace Imarcom\Consolidation;
 
-
 class Consolidation
 {
-
     public $overrideRelativePath;
     public $originalRelativePath;
     public $hashRelativePath;
@@ -26,10 +24,10 @@ class Consolidation
 
     public function validateHash()
     {
-        $this->hash = $this->generateConsolidationHash($this->originalRelativePath, $this->overrideRelativePath);
+        $this->hash = $this->generateHash($this->originalRelativePath, $this->overrideRelativePath);
 
         if (! file_exists(base_path($this->hashRelativePath))) {
-            $this->touch(base_path($this->hashRelativePath));
+            make_file(base_path($this->hashRelativePath));
         }
 
         if (trim(file_get_contents(base_path($this->hashRelativePath))) === $this->hash) {
@@ -39,22 +37,8 @@ class Consolidation
         return $this->valid;
     }
 
-    private function generateConsolidationHash($originalRelativePath, $overrideRelativePath)
+    private function generateHash($originalRelativePath, $overrideRelativePath)
     {
-        return $this->generateFileHash(base_path($originalRelativePath)) . '+' . $this->generateFileHash(base_path($overrideRelativePath));
+        return sha1_file_fixed(base_path($originalRelativePath)) . '+' . sha1_file_fixed(base_path($overrideRelativePath));
     }
-
-    private function generateFileHash ($base_path) {
-        return sha1(preg_replace("#\r\n#","\n", file_get_contents($base_path)));
-    }
-
-    private function touch($path)
-    {
-        if (! is_dir(dirname($path))) {
-            mkdir(dirname($path), 0777, true);
-        }
-
-        touch($path);
-    }
-
 }
