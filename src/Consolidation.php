@@ -26,7 +26,7 @@ class Consolidation
 
     public function validateHash()
     {
-        $this->hash = $this->generateHash($this->originalRelativePath, $this->overrideRelativePath);
+        $this->hash = $this->generateConsolidationHash($this->originalRelativePath, $this->overrideRelativePath);
 
         if (! file_exists(base_path($this->hashRelativePath))) {
             $this->touch(base_path($this->hashRelativePath));
@@ -39,9 +39,13 @@ class Consolidation
         return $this->valid;
     }
 
-    private function generateHash($originalRelativePath, $overrideRelativePath)
+    private function generateConsolidationHash($originalRelativePath, $overrideRelativePath)
     {
-        return sha1_file(base_path($originalRelativePath)) . '+' . sha1_file(base_path($overrideRelativePath));
+        return $this->generateFileHash(base_path($originalRelativePath)) . '+' . $this->generateFileHash(base_path($overrideRelativePath));
+    }
+
+    private function generateFileHash ($base_path) {
+        return sha1(preg_replace("#\r\n#","\n", file_get_contents($base_path)));
     }
 
     private function touch($path)
