@@ -8,6 +8,7 @@
             border-top: 0;
             white-space:pre-wrap;
             font-size: 12px;
+            width: 100%;
         }
         table.diff tbody {
             font-family:Courier, monospace
