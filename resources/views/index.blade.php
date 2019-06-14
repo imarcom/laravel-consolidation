@@ -71,7 +71,7 @@
         @if ($consolidation->valid)
             <li class="text-grey">{{ $consolidation->overrideRelativePath }}</li>
         @else
-            <li><a href="#compare{{ $index }}" class="no-underline text-blue hover:text-blue-dark hover:underline">{{ $consolidation->overrideRelativePath }}</a></li>
+            <li><a href="#compare{{ $index }}" class="no-underline text-blue-500 hover:text-blue-900 hover:underline">{{ $consolidation->overrideRelativePath }}</a></li>
         @endif
     @endforeach
 </ul>
@@ -87,7 +87,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="path" value="{{ $consolidation->hashRelativePath }}">
                             <input type="hidden" name="hash" value="{{ $consolidation->hash }}">
-                            <input class="font-black text-xs bg-blue text-white px-3 py-2 cursor-pointer rounded" type="submit" value="ACCEPTER">
+                            <input class="font-black text-xs bg-blue-500 hover:bg-blue-400 text-white px-3 py-2 cursor-pointer rounded" type="submit" value="ACCEPTER">
                         </form>
                     </div>
                 </div>
@@ -103,7 +103,7 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="path" value="{{ $consolidation->hashRelativePath }}">
                             <input type="hidden" name="hash" value="{{ $consolidation->hash }}">
-                            <input class="font-black text-xs bg-blue text-white px-3 py-2 cursor-pointer rounded" type="submit" value="ACCEPTER">
+                            <input class="font-black text-xs bg-blue-500 hover:bg-blue-400 text-white px-3 py-2 cursor-pointer rounded" type="submit" value="ACCEPTER">
                         </form>
                     </div>
                 </div>
