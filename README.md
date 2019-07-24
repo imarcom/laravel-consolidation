@@ -2,20 +2,10 @@
 
 ## Installation
 
-You can install the package via composer by adding the repository and the required-dev:
+You can install the package via composer:
 
-```json
-{
-    "require-dev": {
-        "imarcom/laravel-consolidation": "dev-master"
-    },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@bitbucket.org:imarcom/laravel-consolidation.git"
-        }
-    ]
-}
+```bash
+composer required imarcom/laravel-consolidation
 ```
 
 You can publish the config file with:

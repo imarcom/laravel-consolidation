@@ -11,10 +11,18 @@ class ConsolidationController
     {
         $consolidationCollection = new ConsolidationCollection();
 
-        foreach (config('consolidation.directories_to_compare') as $originalDirectory => $overrideDirectory) {
+        foreach (config('consolidation.directories_to_compare',[]) as $originalDirectory => $overrideDirectory) {
             $consolidationCollection = (new ConsolidationCollection())
                 ->globFiles(base_path($overrideDirectory))
                 ->mapConsolidation($originalDirectory, $overrideDirectory)
+                ->filterExisting()
+                ->validateHash()
+                ->merge($consolidationCollection);
+        }
+
+        foreach (config('consolidation.files_to_compare',[]) as $originalFile => $overrideFile) {
+            $consolidationCollection = (new ConsolidationCollection())
+                ->addConsolidationFile($originalFile, $overrideFile)
                 ->filterExisting()
                 ->validateHash()
                 ->merge($consolidationCollection);

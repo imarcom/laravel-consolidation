@@ -43,6 +43,16 @@ class ConsolidationCollection extends Collection
         });
     }
 
+    public function addConsolidationFile(string $originalFile,string $overrideFile){
+        $this->push(new Consolidation(
+            $originalFile,
+            $overrideFile,
+            rtrim(config('consolidation.output'), '/') . '/' . ltrim($overrideFile, '/')
+        ));
+
+        return $this;
+    }
+
     public function validateHash()
     {
         $this->each(function (Consolidation $consolidation) {
